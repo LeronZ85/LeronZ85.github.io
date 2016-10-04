@@ -343,17 +343,14 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">numpy.dtype has the wrong size, try recompiling</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\formula\__init__.py&quot;,</div><div class="line">line 4, in &lt;module&gt;</div><div class="line">    from formulatools import handle_formula_data</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\formula\formulatools.p</div><div class="line">y&quot;, line 1, in &lt;module&gt;</div><div class="line">    import statsmodels.tools.data as data_util</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\tools\__init__.py&quot;, li</div><div class="line">ne 1, in &lt;module&gt;</div><div class="line">    from tools import add_constant, categorical</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\tools\tools.py&quot;, line</div><div class="line">14, in &lt;module&gt;</div><div class="line">    from pandas import DataFrame</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\pandas\__init__.py&quot;, line 6, in &lt;module&gt;</div><div class="line">    from . import hashtable, tslib, lib</div><div class="line">  File &quot;numpy.pxd&quot;, line 157, in init pandas.tslib (pandas\tslib.c:49133)</div><div class="line">ValueError: numpy.dtype has the wrong size, try recompiling</div></pre></td></tr></table></figure>
-<p>解决方案<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade pip</div><div class="line"></div><div class="line">sudo pip install numpy --upgrade --ignore-installed</div><div class="line"></div><div class="line">sudo pip install scipy --upgrade --ignore-installed</div><div class="line"></div><div class="line">sudo pip install scikit-learn --upgrade --ignore-installed</div></pre></td></tr></table></figure></p>
-<p> 如果还不能解决的话</p>
-<p> *1、重启电脑，按command+R进入恢复模式，点击菜单【实用工具】，打开【终端】，输入 csrutil disable</p>
-<p> *2、重启电脑，正常进入，打开【终端】输入 csrutil  status</p>
-<p>这是macosx 10.11 EI Capitan使用了Rootlees，可以理解为一个更高等级的内核保护，系统会默认锁定/system , /sbin , /usr这三个目录，</p>
-<p>通过上面方法可以将这个保护关闭。</p>
-<p>如果没有关闭，安装一些软件时会出现</p>
-<p>Operation not permitted</p>
+          12345678910111213141516171819numpy.dtype has the wrong size, try recompilingTraceback (most recent call last):  File &quot;&lt;stdin&gt;&quot;, line 1
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/03/Dump/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -452,17 +449,14 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/03/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
