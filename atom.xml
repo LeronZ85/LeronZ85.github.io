@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Tyorofurin.github.io/"/>
-  <updated>2016-10-04T01:15:44.000Z</updated>
+  <updated>2016-10-16T05:09:58.000Z</updated>
   <id>http://Tyorofurin.github.io/</id>
   
   <author>
@@ -16,58 +16,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Dump</title>
-    <link href="http://Tyorofurin.github.io/2016/10/03/Dump/"/>
-    <id>http://Tyorofurin.github.io/2016/10/03/Dump/</id>
-    <published>2016-10-03T13:21:03.000Z</published>
-    <updated>2016-10-04T01:15:44.000Z</updated>
+    <title>Jdk8兼容历史低JDK版本时注意的问题</title>
+    <link href="http://Tyorofurin.github.io/2016/10/16/Jdk8%E5%85%BC%E5%AE%B9%E5%8E%86%E5%8F%B2%E4%BD%8EJDK%E7%89%88%E6%9C%AC%E6%97%B6%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://Tyorofurin.github.io/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/</id>
+    <published>2016-10-16T04:27:27.000Z</published>
+    <updated>2016-10-16T05:09:58.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">numpy.dtype has the wrong size, try recompiling</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\formula\__init__.py&quot;,</div><div class="line">line 4, in &lt;module&gt;</div><div class="line">    from formulatools import handle_formula_data</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\formula\formulatools.p</div><div class="line">y&quot;, line 1, in &lt;module&gt;</div><div class="line">    import statsmodels.tools.data as data_util</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\tools\__init__.py&quot;, li</div><div class="line">ne 1, in &lt;module&gt;</div><div class="line">    from tools import add_constant, categorical</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\statsmodels-0.5.0-py2.7-win32.egg\statsmodels\tools\tools.py&quot;, line</div><div class="line">14, in &lt;module&gt;</div><div class="line">    from pandas import DataFrame</div><div class="line">  File &quot;C:\analytics\ext\python27\lib\site-packages\pandas\__init__.py&quot;, line 6, in &lt;module&gt;</div><div class="line">    from . import hashtable, tslib, lib</div><div class="line">  File &quot;numpy.pxd&quot;, line 157, in init pandas.tslib (pandas\tslib.c:49133)</div><div class="line">ValueError: numpy.dtype has the wrong size, try recompiling</div></pre></td></tr></table></figure>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pip install --upgrade pip</div><div class="line"></div><div class="line">sudo pip install numpy --upgrade --ignore-installed</div><div class="line"></div><div class="line">sudo pip install scipy --upgrade --ignore-installed</div><div class="line"></div><div class="line">sudo pip install scikit-learn --upgrade --ignore-installed</div></pre></td></tr></table></figure>
-<h3 id="如果还不能解决的话"><a href="#如果还不能解决的话" class="headerlink" title="如果还不能解决的话"></a>如果还不能解决的话</h3><p> *1、重启电脑，按command+R进入恢复模式，点击菜单【实用工具】，打开【终端】，输入 csrutil disable</p>
-<p> *2、重启电脑，正常进入，打开【终端】输入 csrutil  status</p>
-<p>这是macosx 10.11 EI Capitan使用了Rootlees，可以理解为一个更高等级的内核保护，系统会默认锁定/system , /sbin , /usr这三个目录，</p>
-<p>通过上面方法可以将这个保护关闭。</p>
-<p>如果没有关闭，安装一些软件时会出现</p>
-<p>Operation not permitted</p>
+    <content type="html"><![CDATA[<h3 id="JDK8-兼容历史低JDK版本时注意的问题"><a href="#JDK8-兼容历史低JDK版本时注意的问题" class="headerlink" title="JDK8 兼容历史低JDK版本时注意的问题"></a>JDK8 兼容历史低JDK版本时注意的问题</h3><blockquote>
+<p>虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.ConcurrentHashMap.keySet()这个方法！</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.ConcurrentHashMap;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        ConcurrentHashMap&lt;String, String&gt; map = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line">        map.put(<span class="string">"hello"</span>, <span class="string">"world"</span>);</div><div class="line">        System.out.print(map.keySet());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用jdk1.8编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/bin/javac -source 1.7 -target 1.7 ConcurrentTest.java</div></pre></td></tr></table></figure></p>
+<p>用jdk1.7执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bin/java ConcurrentTest</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: java.util.concurrent.ConcurrentHashMap.keySet()Ljava/util/concurrent/ConcurrentHashMap$KeySetView;</div><div class="line">	at ConcurrentTest.main(ConcurrentTest.java:8)</div></pre></td></tr></table></figure></p>
+<p>jdk1.7 中,keySet方法的返回值是Set<k></k></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span>&#123;...&#125;</div></pre></td></tr></table></figure>
+<p>jdk1.8 中,keySet方法的返回值是KeySetView<k,v><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> KeySetView&lt;K,V&gt; <span class="title">keySet</span><span class="params">()</span> </span>&#123;...&#125;</div></pre></td></tr></table></figure></k,v></p>
+<h3 id="造成这个问题的原因："><a href="#造成这个问题的原因：" class="headerlink" title="造成这个问题的原因："></a>造成这个问题的原因：</h3><p>我们用JDK1.8编译，keySet()会被编译成一个返回ConcurrentHashMap.KeySetView的方法，因为它是用JDK1.8的类库进行构建的。<strong>-target 1.7</strong>参数是使生成的字节码兼容JDK1.7，但是字节码中包含对JDK1.8类库的引用。所以，当你在JDK1.7上运行，使用的是JDK1.7的类库，它无法找到JDK1.8新创建的类，所以就发生了异常。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p>确定项目构建的Java环境就是你希望兼容的JDK版本。构建后的字节码可以无误的运行到新版的JDK中。<br>如果你希望你的项目兼容jdk1.6，jdk1.7，jdk1.8，最好的办法就是使用jdk1.6构建项目。<br>这样做有一个问题就是，你不能使用新版本的一些特性，比如1.8的lamada表达式等功能。</p>
+<h3 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a>相关连接</h3><p><a href="http://stackoverflow.com/questions/25705259/undefined-reference-concurrenthashmap-keyset-when-building-in-java-8" target="_blank" rel="external">stackoverflow</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div c
+      &lt;h3 id=&quot;JDK8-兼容历史低JDK版本时注意的问题&quot;&gt;&lt;a href=&quot;#JDK8-兼容历史低JDK版本时注意的问题&quot; class=&quot;headerlink&quot; title=&quot;JDK8 兼容历史低JDK版本时注意的问题&quot;&gt;&lt;/a&gt;JDK8 兼容历史低JDK版本时注意的问题&lt;/
     
     </summary>
     
-      <category term="Diary" scheme="http://Tyorofurin.github.io/categories/Diary/"/>
     
+      <category term="JDK" scheme="http://Tyorofurin.github.io/tags/JDK/"/>
     
-      <category term="PS3" scheme="http://Tyorofurin.github.io/tags/PS3/"/>
-    
-      <category term="Games" scheme="http://Tyorofurin.github.io/tags/Games/"/>
+      <category term="ConcurrentHashMap" scheme="http://Tyorofurin.github.io/tags/ConcurrentHashMap/"/>
     
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://Tyorofurin.github.io/2016/10/03/hello-world/"/>
-    <id>http://Tyorofurin.github.io/2016/10/03/hello-world/</id>
-    <published>2016-10-03T08:26:26.000Z</published>
-    <updated>2016-10-03T08:26:26.000Z</updated>
+    <title>Hello,World</title>
+    <link href="http://Tyorofurin.github.io/2016/10/03/Hello-World/"/>
+    <id>http://Tyorofurin.github.io/2016/10/03/Hello-World/</id>
+    <published>2016-10-03T04:59:00.000Z</published>
+    <updated>2016-10-16T04:59:55.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<p>青春不是年华，而是心境；青春不是桃面，丹唇，柔膝，而是深沉的意志，恢宏的想象，炽热的感情；青春是生命的源泉在不息的涌流。<br>青春气贯长虹，勇锐盖过怯懦，进取压倒苟安。如此锐气，弱冠后生有之，耳顺之年，则亦多见，年岁有加，并非垂老；理想丢弃，方堕暮年。<br>岁月悠悠，衰微只及肌肤，热忱抛却，颓唐必至灵魂。忧烦，惶恐，丧失自信，定使心灵扭曲，意气如灰。<br>无论年届古稀，抑或二八芳龄，心中皆有生命之欢乐，奇迹之诱惑，孩童般天真久盛不衰。人人心中皆深植一片追求，只要你从天上，人间追求美好，希望，欢乐，勇气和力量，你就青春永驻，风华长存。<br>一旦追求消失，锐气如同冰雪覆盖，玩世不恭，自暴自弃油然而生，即使年方二十，实已老矣。然坚持追求，你就有望在百岁高龄告别尘寰时仍觉年青。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;青春不是年华，而是心境；青春不是桃面，丹唇，柔膝，而是深沉的意志，恢宏的想象，炽热的感情；青春是生命的源泉在不息的涌流。&lt;br&gt;青春气贯长虹，勇锐盖过怯懦，进取压倒苟安。如此锐气，弱冠后生有之，耳顺之年，则亦多见，年岁有加，并非垂老；理想丢弃，方堕暮年。&lt;br&gt;岁月悠悠，衰
     
     </summary>
     
