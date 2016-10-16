@@ -86,25 +86,28 @@
 
 
 
-<meta name="description" content="JDK8 兼容历史低JDK版本时注意的问题
+<meta name="description" content="JDK8 兼容历史低JDK版本时注意的问题前言
+
 虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.ConcurrentHashMap.keySet()这个方法！
 
-12345678910import java.uti">
+异常重现12345678910import j">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jdk8兼容历史低JDK版本时注意的问题">
 <meta property="og:url" content="http://Tyorofurin.github.io/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/index.html">
 <meta property="og:site_name" content="Tyorofurin的博客">
-<meta property="og:description" content="JDK8 兼容历史低JDK版本时注意的问题
+<meta property="og:description" content="JDK8 兼容历史低JDK版本时注意的问题前言
+
 虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.ConcurrentHashMap.keySet()这个方法！
 
-12345678910import java.uti">
-<meta property="og:updated_time" content="2016-10-16T05:09:58.000Z">
+异常重现12345678910import j">
+<meta property="og:updated_time" content="2016-10-16T09:31:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jdk8兼容历史低JDK版本时注意的问题">
-<meta name="twitter:description" content="JDK8 兼容历史低JDK版本时注意的问题
+<meta name="twitter:description" content="JDK8 兼容历史低JDK版本时注意的问题前言
+
 虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.ConcurrentHashMap.keySet()这个方法！
 
-12345678910import java.uti">
+异常重现12345678910import j">
 
 
 
@@ -332,10 +335,11 @@
       
 
       
-        <h3 id="JDK8-兼容历史低JDK版本时注意的问题"><a href="#JDK8-兼容历史低JDK版本时注意的问题" class="headerlink" title="JDK8 兼容历史低JDK版本时注意的问题"></a>JDK8 兼容历史低JDK版本时注意的问题</h3><blockquote>
+        <h3 id="JDK8-兼容历史低JDK版本时注意的问题"><a href="#JDK8-兼容历史低JDK版本时注意的问题" class="headerlink" title="JDK8 兼容历史低JDK版本时注意的问题"></a>JDK8 兼容历史低JDK版本时注意的问题</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><hr>
+<blockquote>
 <p>虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.ConcurrentHashMap.keySet()这个方法！</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.ConcurrentHashMap;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        ConcurrentHashMap&lt;String, String&gt; map = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line">        map.put(<span class="string">"hello"</span>, <span class="string">"world"</span>);</div><div class="line">        System.out.print(map.keySet());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="异常重现"><a href="#异常重现" class="headerlink" title="异常重现"></a>异常重现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.ConcurrentHashMap;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        ConcurrentHashMap&lt;String, String&gt; map = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</div><div class="line">        map.put(<span class="string">"hello"</span>, <span class="string">"world"</span>);</div><div class="line">        System.out.print(map.keySet());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>用jdk1.8编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/bin/javac -source 1.7 -target 1.7 ConcurrentTest.java</div></pre></td></tr></table></figure></p>
 <p>用jdk1.7执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/bin/java ConcurrentTest</div></pre></td></tr></table></figure></p>
 <p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: java.util.concurrent.ConcurrentHashMap.keySet()Ljava/util/concurrent/ConcurrentHashMap$KeySetView;</div><div class="line">	at ConcurrentTest.main(ConcurrentTest.java:8)</div></pre></td></tr></table></figure></p>
@@ -385,6 +389,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/16/Java中的ThreadLocal简析(1)/" rel="prev" title="Java中的ThreadLocal简析(1)">
+                Java中的ThreadLocal简析(1) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -479,17 +487,24 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -536,7 +551,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK8-兼容历史低JDK版本时注意的问题"><span class="nav-number">1.</span> <span class="nav-text">JDK8 兼容历史低JDK版本时注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#造成这个问题的原因："><span class="nav-number">2.</span> <span class="nav-text">造成这个问题的原因：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案："><span class="nav-number">3.</span> <span class="nav-text">解决方案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关连接"><span class="nav-number">4.</span> <span class="nav-text">相关连接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK8-兼容历史低JDK版本时注意的问题"><span class="nav-number">1.</span> <span class="nav-text">JDK8 兼容历史低JDK版本时注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常重现"><span class="nav-number">3.</span> <span class="nav-text">异常重现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#造成这个问题的原因："><span class="nav-number">4.</span> <span class="nav-text">造成这个问题的原因：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案："><span class="nav-number">5.</span> <span class="nav-text">解决方案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关连接"><span class="nav-number">6.</span> <span class="nav-text">相关连接</span></a></li></ol></div>
             
           </div>
         </section>
