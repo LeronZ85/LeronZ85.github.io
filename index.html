@@ -273,8 +273,115 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/16/Java中的ThreadLocal简析(1)/" itemprop="url">
-                  Java中的ThreadLocal简析(1)
+                <a class="post-title-link" href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/" itemprop="url">
+                  ThreadLocal简析(2)-会有内存泄露吗
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T17:54:25+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          会导致内存泄露么?上一节我们讲到ThreadLocal的原理是：将ThreadLocal的弱引用和值包装成Entry放入了当前线程的一个ThreadLocalMap实例中，所以只能在本线程中访问，其他线程无法访问。
+单线程的情况代码示例12345678910111213141516171819202
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/16/ThreadLocal简析(1)-设计原理/" itemprop="url">
+                  ThreadLocal简析(1)-设计原理
                 </a>
               
             
@@ -329,8 +436,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/16/Java中的ThreadLocal简析(1)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Java中的ThreadLocal简析(1)/" itemprop="commentsCount"></span>
+                <a href="/2016/10/16/ThreadLocal简析(1)-设计原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/ThreadLocal简析(1)-设计原理/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,7 +468,7 @@ This class provides thread-local variables.  These variables differ from their n
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/16/Java中的ThreadLocal简析(1)/#more" rel="contents">
+            <a class="btn" href="/2016/10/16/ThreadLocal简析(1)-设计原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -646,7 +753,7 @@ This class provides thread-local variables.  These variables differ from their n
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
