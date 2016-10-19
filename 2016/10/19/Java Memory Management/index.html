@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Memory," />
 
 
 
@@ -86,15 +86,23 @@
 
 
 
-<meta name="description" content="Talk is cheap, Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tyorofurin的博客">
-<meta property="og:url" content="http://Tyorofurin.github.io/index.html">
+<meta name="description" content="Java 内存管理，使用内置的垃圾回收器，是Java语言的亮点之一。它使开发者创建对象时不再担心内存的分配与回收， 因为垃圾回收器自动的回收内存来重新的使用。当消除内存泄露和其他内存相关的问题，使得用更少的代码加快开发成为可能。至少在理论上是这样。
+讽刺的是，Java 垃圾回收器似乎效果很好，创建、消除大多数对象。主要的内存管理的问题都解决了，但经常是以产生严重的优化问题为代价。为了让垃圾回收器适">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Memory Management">
+<meta property="og:url" content="http://Tyorofurin.github.io/2016/10/19/Java Memory Management/index.html">
 <meta property="og:site_name" content="Tyorofurin的博客">
-<meta property="og:description" content="Talk is cheap, Show me the code.">
+<meta property="og:description" content="Java 内存管理，使用内置的垃圾回收器，是Java语言的亮点之一。它使开发者创建对象时不再担心内存的分配与回收， 因为垃圾回收器自动的回收内存来重新的使用。当消除内存泄露和其他内存相关的问题，使得用更少的代码加快开发成为可能。至少在理论上是这样。
+讽刺的是，Java 垃圾回收器似乎效果很好，创建、消除大多数对象。主要的内存管理的问题都解决了，但经常是以产生严重的优化问题为代价。为了让垃圾回收器适">
+<meta property="og:image" content="http://Tyorofurin.github.io/images/20161019/图 2.1 - 新的对象被分配到已使用的堆的末尾.png">
+<meta property="og:image" content="http://Tyorofurin.github.io/images/20161019/图 2.2 - GC 根对象是那些本身被JVM引用到，阻止了其他相关的对象被垃圾回收 .png">
+<meta property="og:image" content="http://Tyorofurin.github.io/images/20161019/图 2.3.png">
+<meta property="og:updated_time" content="2016-10-19T10:01:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tyorofurin的博客">
-<meta name="twitter:description" content="Talk is cheap, Show me the code.">
+<meta name="twitter:title" content="Java Memory Management">
+<meta name="twitter:description" content="Java 内存管理，使用内置的垃圾回收器，是Java语言的亮点之一。它使开发者创建对象时不再担心内存的分配与回收， 因为垃圾回收器自动的回收内存来重新的使用。当消除内存泄露和其他内存相关的问题，使得用更少的代码加快开发成为可能。至少在理论上是这样。
+讽刺的是，Java 垃圾回收器似乎效果很好，创建、消除大多数对象。主要的内存管理的问题都解决了，但经常是以产生严重的优化问题为代价。为了让垃圾回收器适">
+<meta name="twitter:image" content="http://Tyorofurin.github.io/images/20161019/图 2.1 - 新的对象被分配到已使用的堆的末尾.png">
 
 
 
@@ -115,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://Tyorofurin.github.io/"/>
+  <link rel="canonical" href="http://Tyorofurin.github.io/2016/10/19/Java Memory Management/"/>
 
-  <title> Tyorofurin的博客 </title>
+  <title> Java Memory Management | Tyorofurin的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,9 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,9 +256,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -272,10 +278,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/10/19/Java Memory Management/" itemprop="url">
-                  Java Memory Management
-                </a>
+                Java Memory Management
               
             
           </h1>
@@ -342,250 +345,10 @@
           
 
           
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Java 内存管理，使用内置的垃圾回收器，是Java语言的亮点之一。它使开发者创建对象时不再担心内存的分配与回收， 因为垃圾回收器自动的回收内存来重新的使用。当消除内存泄露和其他内存相关的问题，使得用更少的代码加快开发成为可能。至少在理论上是这样。
-讽刺的是，Java 垃圾回收器似乎效果很好，创建、
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/19/Java Memory Management/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/" itemprop="url">
-                  ThreadLocal简析(2)-会有内存泄露吗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T17:54:25+08:00" content="2016-10-17">
-              2016-10-17
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          会导致内存泄露么?上一节我们讲到ThreadLocal的原理是：将ThreadLocal的弱引用和值包装成Entry放入了当前线程的一个ThreadLocalMap实例中，所以只能在本线程中访问，其他线程无法访问。
-单线程的情况代码示例12345678910111213141516171819202
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/16/ThreadLocal简析(1)-设计原理/" itemprop="url">
-                  ThreadLocal简析(1)-设计原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-16T21:44:56+08:00" content="2016-10-16">
-              2016-10-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
               &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+              <span class="page-pv">本文总阅读量<i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
               </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/ThreadLocal/" itemprop="url" rel="index">
-                    <span itemprop="name">ThreadLocal</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/16/ThreadLocal简析(1)-设计原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/ThreadLocal简析(1)-设计原理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
           
         </div>
       </header>
@@ -598,261 +361,122 @@
       
 
       
-        
-          
-          看看JDK中的源码是这么写的：
+        <p>Java 内存管理，使用内置的垃圾回收器，是Java语言的亮点之一。它使开发者创建对象时不再担心内存的分配与回收， 因为垃圾回收器自动的回收内存来重新的使用。当消除内存泄露和其他内存相关的问题，使得用更少的代码加快开发成为可能。至少在理论上是这样。</p>
+<p>讽刺的是，Java 垃圾回收器似乎效果很好，创建、消除大多数对象。主要的内存管理的问题都解决了，但经常是以产生严重的优化问题为代价。为了让垃圾回收器适用于所有的情形，它变成了一个复杂和难以优化的系统。为了理清关于垃圾回收器的概念，你首先要理解在JVM中内存管理是如何工作的。</p>
+<h3 id="垃圾回收器如何工作的"><a href="#垃圾回收器如何工作的" class="headerlink" title="垃圾回收器如何工作的"></a>垃圾回收器如何工作的</h3><p>很多人认为垃圾回是收集并丢弃”死“对象。事实上，Java垃圾回收器恰恰相反。“活”对象被跟踪，其他的都是被指定成垃圾。正如你将要看到的，这一根本性的误解导致很多优化的问题。</p>
+<p>我们从堆开始说起，堆是用来动态分配内存的一块内存区域。当应用程序在运行时，操作系统根据配置提前分配堆空间给JVM来管理。这种做法有很多重大影响：</p>
+<ul>
+<li><p>对象创建变得更快了，因为操作系统的全局同步对于每个对象不是必须的。一个分配请求一个内存数组的空间，同时移动偏移指针向前(图 2.1)。下一个分配在这个偏移指针开始请求下一个内存数组的空间。</p>
+</li>
+<li><p>当一个对象不再被使用，垃圾回收器回收底层内存，在以后的对象分配时重用这块内存。这意味着没有明确的删除内存，没有将内存交还给操作系统。</p>
+</li>
+</ul>
+<p><img src="/images/20161019/图 2.1 - 新的对象被分配到已使用的堆的末尾.png" alt="图 2.1 : 新的对象被分配到已使用的堆的末尾"></p>
+<p>所有对象都是由JVM管理，在堆空间进行分配。开发人员使用的每一个句柄都是这样处理的，包括类对象，静态变量，甚至代码本身。只要一个对象被引用，JVM就认为它是活跃的。一旦一个对象不再被引用，因此不再被应用程序代码可达，垃圾回收器就会删除它，回收不被使用的内存。这听上去简单，它引出了一个问题：谁是这颗引用树的第一个节点？</p>
+<h3 id="垃圾回收-根对象－所有对象树的开始"><a href="#垃圾回收-根对象－所有对象树的开始" class="headerlink" title="垃圾回收 根对象－所有对象树的开始"></a>垃圾回收 根对象－所有对象树的开始</h3><p>每个对象树必须有一个或多个根对象。只要应用程序可达这些根对象，整棵树就是可达的。但是什么时候这些根对象被认为是可达的？这些特别的对象被称为垃圾回收的根对象(GC roots; 图2.2)总是可达的，所以</p>
+<p>在Java中有4种GC 根对象</p>
+<ul>
+<li><p>线程栈中存活的局部变量。这不是真正的对象虚拟索引所以是不可见的。总而言之，本地变量是GC的根对象。</p>
+</li>
+<li><p>活跃的Java线程一直都被视为存活的对象所以是GC根对象。线程局部变量是特别需要关注的。</p>
+</li>
+<li><p>静态变量是被所在的类引用到。它们实际上就是GC根对象。类本身是可以被垃圾回收的，将会删除它引用所有的静态变量。当我们使用应用服务时这点很重要，一般情况是OSGi容器或者类加载器。我们将会在Problem Patterns板块讨论相关的问题。</p>
+</li>
+<li><p>Java本地方法引用是本地方法创建的作为JNI命令的一部分的Java对象。这样创建的对象被特别的处理，因为JVM不知道这些对象是否是本地代码创建的。这样的对象代表了特别的GC根对象构成，在Problem Patterns板块我们会检查更多的细节。</p>
+</li>
+</ul>
+<p><img src="/images/20161019/图 2.2 - GC 根对象是那些本身被JVM引用到，阻止了其他相关的对象被垃圾回收 .png" alt="图2.2:GC 根对象是那些本身被JVM引用到，阻止了其他相关的对象被垃圾回收"></p>
+<p>所以，一个简单的Java 应用程序有如下的GC 根对象。</p>
+<ul>
+<li>main方法的局部变量。</li>
+<li>main线程</li>
+<li>类中的静态变量</li>
+</ul>
+<h3 id="标记，清除垃圾"><a href="#标记，清除垃圾" class="headerlink" title="标记，清除垃圾"></a>标记，清除垃圾</h3><p>为了确定哪些类不再被使用，JVM 不断的适宜的运行标记清理算法。正如你可能想到的，算法明确的分两步进行：</p>
+<ul>
+<li>算法遍历所有的对象引用，从GC根对象开始，标记所有被找到的对象为活跃的。</li>
+<li>没有标记的对象占有的堆内存会被回收，标记成释放的空间，最终清理不被使用的对象。</li>
+</ul>
+<p>垃圾回收目的是去除造成传统内存泄露的因素：在内存中不可达却没有删除的对象。然而，只是就原始意义来说对于内存泄露是有效的。不被使用的对象仍然可以被应用程序可达这种情况仍然存在，因为开发者会忘记去掉对象的引用。这些对象无法被垃圾回收。更糟的是，常见的内存泄露却不能被任何软件检测到(图2.3)。即使最好的分析软件也只是标注可疑的对象。</p>
+<p><img src="/images/20161019/图 2.3.png" alt="图 2.3.png"></p>
+<p>相关链接:<br><a href="https://www.dynatrace.com/resources/ebooks/javabook/how-garbage-collection-works/" target="_blank" rel="external">how-garbage-collection-works</a></p>
 
-This class provides thread-local variables.  These variables differ from their normal counterparts in that each thread that accesses 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/16/ThreadLocal简析(1)-设计原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/" itemprop="url">
-                  Jdk8兼容历史低JDK版本时注意的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-16T12:27:27+08:00" content="2016-10-16">
-              2016-10-16
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/Memory/" rel="tag">#Memory</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          JDK8 兼容历史低JDK版本时注意的问题前言
-
-虽然使用高版本的JDK可以通过指定编译source和target参数来兼容低版本JDK，但只是class文件格式上的，如果引用了高版本JRE库中某些方法一样会再低版本的JDK上报错；典型的例子就是java.util.concurrent.Concur
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/ThreadLocal简析(2)-会有内存泄露吗/" rel="next" title="ThreadLocal简析(2)-会有内存泄露吗">
+                <i class="fa fa-chevron-left"></i> ThreadLocal简析(2)-会有内存泄露吗
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/06/Hello-World/" itemprop="url">
-                  Hello-World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-06T12:59:00+08:00" content="2016-10-06">
-              2016-10-06
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/06/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/Hello-World/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          青春不是年华，而是心境；青春不是桃面，丹唇，柔膝，而是深沉的意志，恢宏的想象，炽热的感情；青春是生命的源泉在不息的涌流。青春气贯长虹，勇锐盖过怯懦，进取压倒苟安。如此锐气，弱冠后生有之，耳顺之年，则亦多见，年岁有加，并非垂老；理想丢弃，方堕暮年。岁月悠悠，衰微只及肌肤，热忱抛却，颓唐必至灵魂。忧烦，
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/06/Hello-World/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -860,6 +484,14 @@ This class provides thread-local variables.  These variables differ from their n
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/19/Java Memory Management/"
+           data-title="Java Memory Management" data-url="http://Tyorofurin.github.io/2016/10/19/Java Memory Management/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -879,8 +511,17 @@ This class provides thread-local variables.  These variables differ from their n
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/7710808.png"
@@ -948,6 +589,17 @@ This class provides thread-local variables.  These variables differ from their n
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收器如何工作的"><span class="nav-number">1.</span> <span class="nav-text">垃圾回收器如何工作的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收-根对象－所有对象树的开始"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收 根对象－所有对象树的开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记，清除垃圾"><span class="nav-number">3.</span> <span class="nav-text">标记，清除垃圾</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1067,6 +719,10 @@ This class provides thread-local variables.  These variables differ from their n
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
