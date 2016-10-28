@@ -86,15 +86,30 @@
 
 
 
-<meta name="description" content="Talk is cheap, Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tyorofurin的博客">
-<meta property="og:url" content="http://Tyorofurin.github.io/tags/ConcurrentHashMap/index.html">
+<meta name="description" content="摘要Java开发人员对于ArrayList都很熟悉，工作中几乎每天都在使用它。本文对于ArrayList内部的实现的原理进行详细的说明。
+简介
+动态数组实现了List接口。有所有的线性表的操作，允许包括null在内的所有的实例。除了实现 List 接口外，此类还提供一些方法来操作内部用来存储列表的数组的大小。(该类基本上等同于Vector，除了它不是同步的。)
+
+ArrayList是动态数组，简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList工作原理及实现">
+<meta property="og:url" content="http://Tyorofurin.github.io/2016/10/28/2016/10/ArrayList工作原理及实现/index.html">
 <meta property="og:site_name" content="Tyorofurin的博客">
-<meta property="og:description" content="Talk is cheap, Show me the code.">
+<meta property="og:description" content="摘要Java开发人员对于ArrayList都很熟悉，工作中几乎每天都在使用它。本文对于ArrayList内部的实现的原理进行详细的说明。
+简介
+动态数组实现了List接口。有所有的线性表的操作，允许包括null在内的所有的实例。除了实现 List 接口外，此类还提供一些方法来操作内部用来存储列表的数组的大小。(该类基本上等同于Vector，除了它不是同步的。)
+
+ArrayList是动态数组，简单">
+<meta property="og:image" content="http://Tyorofurin.github.io/images/2016/10/图10.28-ArrayList工作原理及实现-操作演示.png">
+<meta property="og:updated_time" content="2016-10-28T02:51:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tyorofurin的博客">
-<meta name="twitter:description" content="Talk is cheap, Show me the code.">
+<meta name="twitter:title" content="ArrayList工作原理及实现">
+<meta name="twitter:description" content="摘要Java开发人员对于ArrayList都很熟悉，工作中几乎每天都在使用它。本文对于ArrayList内部的实现的原理进行详细的说明。
+简介
+动态数组实现了List接口。有所有的线性表的操作，允许包括null在内的所有的实例。除了实现 List 接口外，此类还提供一些方法来操作内部用来存储列表的数组的大小。(该类基本上等同于Vector，除了它不是同步的。)
+
+ArrayList是动态数组，简单">
+<meta name="twitter:image" content="http://Tyorofurin.github.io/images/2016/10/图10.28-ArrayList工作原理及实现-操作演示.png">
 
 
 
@@ -115,9 +130,9 @@
 
 
 
-  <link rel="canonical" href="http://Tyorofurin.github.io/tags/ConcurrentHashMap/"/>
+  <link rel="canonical" href="http://Tyorofurin.github.io/2016/10/28/2016/10/ArrayList工作原理及实现/"/>
 
-  <title> 标签: ConcurrentHashMap | Tyorofurin的博客 </title>
+  <title> ArrayList工作原理及实现 | Tyorofurin的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,46 +264,164 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        ConcurrentHashMap
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ArrayList工作原理及实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T07:18:10+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/28/2016/10/ArrayList工作原理及实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/2016/10/ArrayList工作原理及实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量<i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Java开发人员对于ArrayList都很熟悉，工作中几乎每天都在使用它。本文对于ArrayList内部的实现的原理进行详细的说明。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p>动态数组实现了List接口。有所有的线性表的操作，允许包括null在内的所有的实例。除了实现 List 接口外，此类还提供一些方法来操作内部用来存储列表的数组的大小。(该类基本上等同于Vector，除了它不是同步的。)</p>
+</blockquote>
+<p>ArrayList是动态数组，简单的使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">list.add(<span class="string">"克罗斯"</span>);</div><div class="line">list.add(<span class="string">"格列兹曼"</span>);</div><div class="line">list.add(<span class="string">"罗本"</span>);</div><div class="line">list.remove(<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++) &#123;</div><div class="line">list.add(<span class="string">"test"</span>);</div><div class="line">&#125;</div><div class="line">list.add(<span class="string">"扩容"</span>);</div></pre></td></tr></table></figure>
+<p>ArrayList内部是维护一个数组，add和remove操作都是对数组的操作，操作过程如下图：</p>
+<p><img src="/images/2016/10/图10.28-ArrayList工作原理及实现-操作演示.png" alt="图10.28-ArrayList工作原理及实现-操作演示"></p>
+<h3 id="add函数"><a href="#add函数" class="headerlink" title="add函数"></a>add函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">        ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></div><div class="line">        elementData[size++] = e;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>主要两个操作：</p>
+<p>＊ 扩容<br>＊ 新的对象放在在数组最后，计数加一</p>
+<h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><p>ArrayList最重要的一点就是扩容。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</div><div class="line">       <span class="comment">// overflow-conscious code</span></div><div class="line">        <span class="keyword">int</span> oldCapacity = elementData.length;</div><div class="line">        <span class="comment">/** 扩容到原来大小的1.5倍*/</span></div><div class="line">        <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</div><div class="line">        <span class="comment">/** 扩容的容量小于需要的大小,设置为需要的大小*/</span></div><div class="line">        <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</div><div class="line">            newCapacity = minCapacity;</div><div class="line">        <span class="comment">/** 判断又没有超过最大的数组长度限制*/</span></div><div class="line">        <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</div><div class="line">            newCapacity = hugeCapacity(minCapacity);</div><div class="line">        <span class="comment">/**将原来数组的值copy新数组中去， ArrayList的引用指向新数组*/</span></div><div class="line">        <span class="comment">/**Arrays.copyOf会新创建newCapacity大小的数组，再拷贝原数组到新的数组。如果数据量很大，重复的创建的数组，那么还是会影响效率，*/</span></div><div class="line">        <span class="comment">/**因此鼓励在合适的时候通过构造方法指定默认的capaticy大小*/</span></div><div class="line">        <span class="comment">/** minCapacity is usually close to size, so this is a win:*/</span></div><div class="line">        elementData = Arrays.copyOf(elementData, newCapacity);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="remove函数"><a href="#remove函数" class="headerlink" title="remove函数"></a>remove函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">        rangeCheck(index);</div><div class="line"></div><div class="line">        modCount++;</div><div class="line">        E oldValue = elementData(index);</div><div class="line"></div><div class="line">        <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</div><div class="line">            System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</div><div class="line">                             numMoved);</div><div class="line">        elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> oldValue;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>移除此列表中指定位置上的元素。向左移动所有后续元素（将其索引减 1）。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/10/16/Jdk8兼容历史低JDK版本时注意的问题/" itemprop="url">
-              
-                <span itemprop="name">Jdk8兼容历史低JDK版本时注意的问题</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-16T12:27:27+08:00"
-              content="2016-10-16" >
-          10-16
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/19/Java Memory Management/" rel="next" title="Java Memory Management">
+                <i class="fa fa-chevron-left"></i> Java Memory Management
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +429,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/28/2016/10/ArrayList工作原理及实现/"
+           data-title="ArrayList工作原理及实现" data-url="http://Tyorofurin.github.io/2016/10/28/2016/10/ArrayList工作原理及实现/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/7710808.png"
@@ -384,6 +534,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add函数"><span class="nav-number">3.</span> <span class="nav-text">add函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩容"><span class="nav-number">3.1.</span> <span class="nav-text">扩容</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove函数"><span class="nav-number">4.</span> <span class="nav-text">remove函数</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -503,6 +664,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
